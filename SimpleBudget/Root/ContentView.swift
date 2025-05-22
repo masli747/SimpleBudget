@@ -19,6 +19,8 @@ struct ContentView: View {
                 .tabItem { Label("Weekly",     systemImage: "chart.pie") }
             MonthlyView()
                 .tabItem { Label("Monthly",    systemImage: "chart.bar") }
+            DelinquencyView()
+                .tabItem { Label("Delinquency", systemImage: "exclamationmark.triangle") }
             SettingsView()
                 .tabItem { Label("Settings",   systemImage: "gear") }
         }
