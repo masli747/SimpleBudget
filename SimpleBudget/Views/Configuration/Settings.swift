@@ -7,23 +7,34 @@
 
 
 import SwiftUI
+import SwiftData
 
 struct Settings {
     @AppStorage("currency") static var currency = "USD"
+    @AppStorage("user_configured") static var userConfigured: Bool = false
 }
 
 struct SettingsView: View {
+    @Environment(\.modelContext) private var context
+    @State private var stackPath = NavigationPath()
     @AppStorage("currency") private var currency = "USD"
     let options = ["USD","EUR","KRW"]
     
     var body: some View {
-        NavigationStack {
+        NavigationStack(path: $stackPath) {
             Form {
                 Section("Currency") {
                     Picker("Currency", selection: $currency) {
                         ForEach(options, id: \.self) { Text($0) }
                     }
                     .pickerStyle(.segmented)
+                }
+                Section {
+                    NavigationLink {
+                        UserConfiguration()
+                    } label: {
+                        ListCell(message: "Configure User")
+                    }
                 }
                 Section {
                     Button("Reset All Data") {
@@ -40,6 +51,25 @@ struct SettingsView: View {
     func deleteAll() {
         // simply reset app data
         UserDefaults.standard.removeObject(forKey: "currency")
+        resetData()
+    }
+    
+    private func resetData() {
+        do {
+            try context.delete(model: User.self)
+            try context.delete(model: Expense.self)
+        } catch {
+            print("Error deleting all data: \(error)")
+        }
     }
 }
 
+struct ListCell: View {
+    var message: String
+    
+    var body: some View {
+        HStack {
+            Text(message)
+        }
+    }
+}
