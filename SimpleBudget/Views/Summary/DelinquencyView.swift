@@ -6,10 +6,22 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct DelinquencyView: View {
+    @Environment(\.modelContext) private var context
+    @Query var user: [User]
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        if let user = user.first {
+            Form {
+                Section(header: Text("User")) {
+                    TextField("Name", text: .constant(user.name))
+                }
+            }
+        } else {
+            Text("User Not Configured...")
+        }
     }
 }
 
