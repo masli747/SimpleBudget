@@ -12,6 +12,7 @@ import SwiftData
 struct DashboardView: View {
     @Query(sort: \Expense.date, order: .reverse) var expenses: [Expense]
     @State private var showAlert = false
+    @State private var stackPath = NavigationPath()
     
     // Usability: visibility of system status
     var todayTotal: Double {
@@ -23,7 +24,7 @@ struct DashboardView: View {
     }
     
     var body: some View {
-        NavigationStack {
+        NavigationStack(path: $stackPath) {
             VStack(spacing: 20) {
                 Text("Today’s Spend")
                     .font(.headline)
@@ -46,9 +47,29 @@ struct DashboardView: View {
                         .contentShape(Rectangle()) // ≥44pt tap area
                     }
                 }
+                .navigationDestination(for: String.self) { _ in
+                AddExpenseView()
+                } // Configure title, add, and edit buttons.
+//                .navigationTitle(Text("RealAssignments\u{2122}"))
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        NavigationLink {
+                            AddExpenseView()
+                        } label: {
+                            HStack {
+                                Image(systemName: "plus")
+//                                Text("Log")
+                            }
+                        }
+                    }
+                }
             }
             .padding()
             .navigationTitle("Dashboard")
         }
     }
+}
+
+#Preview {
+    DashboardView()
 }

@@ -14,7 +14,6 @@ struct DelinquencyView: View {
     @Environment(\.refresh) private var refresh
     @Query var user: [User]
     
-    
     var body: some View {
         Group {
             if let user = user.first {

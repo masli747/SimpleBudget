@@ -15,6 +15,7 @@ struct Settings {
 }
 
 struct SettingsView: View {
+    @Environment(\.dismiss) private var dismiss
     @Environment(\.modelContext) private var context
     @State private var stackPath = NavigationPath()
     @AppStorage("currency") private var currency = "USD"
@@ -52,6 +53,7 @@ struct SettingsView: View {
         // simply reset app data
         UserDefaults.standard.removeObject(forKey: "currency")
         resetData()
+        dismiss()
     }
     
     private func resetData() {
