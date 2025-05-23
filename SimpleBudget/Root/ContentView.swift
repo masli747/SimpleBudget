@@ -33,12 +33,15 @@ struct ContentView: View {
             SettingsView()
                 .tabItem { Label("Settings",   systemImage: "gear") }
                 .tag(Tab.settings)
+            ExportView()
+                .tabItem { Label("Export", systemImage: "externaldrive.badge.timemachine") }
+                .tag(Tab.export)
         }
     }
 }
 
 enum Tab {
-    case root, dashboard, expense, weekly, monthly, delinquency, settings
+    case root, dashboard, expense, weekly, monthly, delinquency, settings, export
 }
 
 extension Notification.Name {
