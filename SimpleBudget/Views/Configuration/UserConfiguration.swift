@@ -54,9 +54,9 @@ struct UserConfiguration: View {
                     //                            .background(Color.gray)
                 }
                 VStack {
-                    Text("Debt Ratio:")
+                    Text("Debt to Income Ratio:")
                         .frame(maxWidth: .infinity, alignment: .leading)
-                    TextField("Payments Late (30-59 days):", value: $late_30_59, formatter: Self.formatter)
+                    TextField("Debt to Income Ratio):", value: $debt_ratio, formatter: Self.formatter)
                         .keyboardType(.numberPad)
                 }
                 VStack {
@@ -75,12 +75,6 @@ struct UserConfiguration: View {
                     Text("Payments Late (90+ days):")
                         .frame(maxWidth: .infinity, alignment: .leading)
                     TextField("Payments Late (90+ Days):", value: $late_90, formatter: Self.formatter)
-                        .keyboardType(.numberPad)
-                }
-                VStack {
-                    Text("Debt to Income Ratio:")
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                    TextField("Debt to Income Ratio:", value: $debt_ratio, formatter: Self.formatter)
                         .keyboardType(.numberPad)
                 }
                 VStack {

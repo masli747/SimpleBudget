@@ -66,6 +66,5 @@ import CoreML
         } catch {
             print("Error Predicting Risk! \(error)")
         }
-        
     }
 }
