@@ -100,6 +100,7 @@ struct DelinquencyView: View {
             }
             .onChange(of: selectedTab) {
                 // Force refresh whenever we revisit this view.
+                // https://developer.apple.com/documentation/swiftui/environmentvalues/refresh
                 Task {
                     await refresh?()
                 }
