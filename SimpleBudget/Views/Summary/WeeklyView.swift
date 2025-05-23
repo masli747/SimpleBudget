@@ -12,6 +12,11 @@ import Charts
 
 struct WeeklyView: View {
     @Query var expenses: [Expense]
+    let colors = ["Food": Color.red,
+                  "Transport": Color.blue,
+                  "Coffee": Color.yellow,
+                  "Shopping": Color.green,
+                  "Other": Color.purple]
     
     var weeklyData: [(category: String, total: Double)] {
         let weekAgo = Calendar.current.date(
@@ -31,12 +36,17 @@ struct WeeklyView: View {
         NavigationStack {
             Chart(weeklyData, id: \.category) { item in
                 SectorMark(
-                    angle: .value("Amount", item.total)
+                  angle: .value("Amount", item.total),
+                  innerRadius: .ratio(0.5),
+                  outerRadius: .ratio(0.95)
                 )
-                .annotation(position: .automatic) { //.annotation(position: .center)
+                .annotation(position: .overlay) { //.annotation(position: .center)
                     Text(item.category)
                         .font(.caption)
+                        .bold(true)
+                        .foregroundStyle(.white)
                 }
+                .foregroundStyle(colors[item.category] ?? Color.gray)
             }
             .chartLegend(.visible)
             .navigationTitle("Weekly Breakdown")
