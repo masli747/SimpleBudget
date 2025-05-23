@@ -14,14 +14,15 @@ import CoreML
     var model: CreditRiskClassifier?
     
     init() {
+        // Initialize the ML Model from file
         do {
-//            let config = MLModelConfiguration()
             self.model = try CreditRiskClassifier(configuration: .init())
         } catch {
             print("Error Loading Model!")
         }
     }
     
+    // Make a signle forward imputation based off given parameters
     func predictRisk(
         _ revUtil: Double,
         _ age: Int,
@@ -41,7 +42,7 @@ import CoreML
         }
         
         do {
-            // Make the prediction
+            // Run the forward pass
             let output = try model.prediction(
                 rev_util: revUtil,
                 age: Double(age),

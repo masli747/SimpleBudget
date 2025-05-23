@@ -13,6 +13,7 @@ import Charts
 struct MonthlyView: View {
     @Query var expenses: [Expense]
     
+    // Compute the amount spent per month.
     var monthlyTotals: [(month: Date, total: Double)] {
         let threeMonthsAgo = Calendar.current.date(
             byAdding: .month, value: -2, to: .now
@@ -32,6 +33,7 @@ struct MonthlyView: View {
     
     var body: some View {
         NavigationStack {
+            // Draw each monthly sum in the graph.
             Chart(monthlyTotals, id: \.month) { item in
                 BarMark(
                     x: .value("Month", item.month, unit: .month),

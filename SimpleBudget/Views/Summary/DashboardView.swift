@@ -50,7 +50,6 @@ struct DashboardView: View {
                 .navigationDestination(for: String.self) { _ in
                 AddExpenseView()
                 } // Configure title, add, and edit buttons.
-//                .navigationTitle(Text("RealAssignments\u{2122}"))
                 .toolbar {
                     ToolbarItem(placement: .navigationBarTrailing) {
                         NavigationLink {

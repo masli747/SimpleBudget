@@ -19,6 +19,7 @@ struct DelinquencyView: View {
     var body: some View {
         Group {
             NavigationStack(path: $stackPath) {
+                // Dynamically update presented data based on user existence and user object data.
                 if let user = user.first {
                     VStack {
                         Text("Hello, \(user.name)!")
@@ -98,6 +99,7 @@ struct DelinquencyView: View {
                 }
             }
             .onChange(of: selectedTab) {
+                // Force refresh whenever we revisit this view.
                 Task {
                     await refresh?()
                 }

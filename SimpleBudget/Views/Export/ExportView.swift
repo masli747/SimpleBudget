@@ -16,6 +16,7 @@ struct ExportView: View {
     @State private var showingExporter = false
     @Query var expenses: [Expense]
 
+    // Go through each tuple from our query, and convert into a string representation.
     private var exportText: String {
         var csv = "Date,Amount,Category\n"
         let formatter = DateFormatter()

@@ -56,6 +56,7 @@ struct SettingsView: View {
         dismiss()
     }
     
+    // Violentely remove all tuples from the database.
     private func resetData() {
         do {
             try context.delete(model: User.self)
@@ -66,6 +67,7 @@ struct SettingsView: View {
     }
 }
 
+// Simple structure to organize presenting a navigation link to the user.
 struct ListCell: View {
     var message: String
     

@@ -34,13 +34,14 @@ struct WeeklyView: View {
     
     var body: some View {
         NavigationStack {
+            // Draw each item from the query as a segment of the pie chart.
             Chart(weeklyData, id: \.category) { item in
                 SectorMark(
                   angle: .value("Amount", item.total),
                   innerRadius: .ratio(0.5),
                   outerRadius: .ratio(0.95)
                 )
-                .annotation(position: .overlay) { //.annotation(position: .center)
+                .annotation(position: .overlay) {
                     Text(item.category)
                         .font(.caption)
                         .bold(true)

@@ -51,7 +51,6 @@ struct UserConfiguration: View {
                         .frame(maxWidth: .infinity, alignment: .leading)
                     TextField("Revolving Utilization", value: $rev_util, formatter: Self.formatter)
                         .keyboardType(.numberPad)
-                    //                            .background(Color.gray)
                 }
                 VStack {
                     Text("Debt to Income Ratio:")
@@ -103,7 +102,7 @@ struct UserConfiguration: View {
                 }
             }
             Section(header: Text("Save Changes")) {
-                if let user = user.first {
+                if user.first != nil {
                     Button(action: updateUser) {
                         Text("Update User")
                     }
@@ -135,7 +134,7 @@ struct UserConfiguration: View {
     }
     
     func addUser() {
-        if let user = user.first {
+        if user.first != nil {
             updateUser()
             return
         } else {
@@ -188,6 +187,7 @@ struct UserConfiguration: View {
         }
     }
     
+    // Force TextInput to only accept valid numbers using a formatter.
     // https://www.hackingwithswift.com/quick-start/swiftui/how-to-format-a-textfield-for-numbers
     private static let formatter: NumberFormatter = {
         let formatter = NumberFormatter()

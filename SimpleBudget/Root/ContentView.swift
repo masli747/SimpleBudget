@@ -13,13 +13,11 @@ struct ContentView: View {
     @State private var reloadUserTab = UUID()
     
     var body: some View {
+        // Present navigatable scenes to the user.
         TabView(selection: $selection) {
             DashboardView()
                 .tabItem { Label("Dashboard",  systemImage: "house") }
                 .tag(Tab.root)
-//            AddExpenseView()
-//                .tabItem { Label("Log",        systemImage: "plus.circle") }
-//                .tag(Tab.expense)
             WeeklyView()
                 .tabItem { Label("Weekly",     systemImage: "chart.pie") }
                 .tag(Tab.weekly)
@@ -40,12 +38,9 @@ struct ContentView: View {
     }
 }
 
+// Keep track of where the user is in the navigation stack.
 enum Tab {
     case root, dashboard, expense, weekly, monthly, delinquency, settings, export
-}
-
-extension Notification.Name {
-    static let userDidChange = Notification.Name("UserDidChange")
 }
 
 #Preview {
