@@ -114,6 +114,23 @@ struct UserConfiguration: View {
                 }
             }
         }
+        .onAppear {
+            // If valid user already exists, read in their attributes.
+            if let existingUser = user.first {
+                name = existingUser.name
+                age = existingUser.age
+                rev_util = existingUser.rev_util
+                late_30_59 = existingUser.late_30_59
+                debt_ratio = existingUser.debt_ratio
+                monthly_inc = existingUser.monthly_inc
+                open_credit = existingUser.open_credit
+                late_90 = existingUser.late_90
+                real_estate = existingUser.real_estate
+                late_60_89 = existingUser.late_60_89
+                dependents = existingUser.dependents
+                delinquency_likelyhood = existingUser.delinquency_likelyhood
+            }
+        }
         .navigationTitle("Configure User")
     }
     
