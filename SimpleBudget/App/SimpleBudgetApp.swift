@@ -10,9 +10,11 @@ import SwiftData
 
 @main
 struct SimpleBudgetApp: App {
+    // SwiftData container for Expense model
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
-            Item.self,
+            Expense.self,
+            User.self,
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 
@@ -26,7 +28,7 @@ struct SimpleBudgetApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .modelContainer(sharedModelContainer)
         }
-        .modelContainer(sharedModelContainer)
     }
 }
