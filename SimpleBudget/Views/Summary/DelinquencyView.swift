@@ -22,9 +22,11 @@ struct DelinquencyView: View {
                 if let user = user.first {
                     VStack {
                         Text("Hello, \(user.name)!")
-                            .font(.title)
+                            .font(.largeTitle)
                             .bold()
                             .frame(maxWidth: .infinity, alignment: .leading)
+                            .padding(.top, 20)
+                            .padding(.bottom, 10)
                         
                         Text("Based on your provided information,")
                             .frame(maxWidth: .infinity, alignment: .leading)
@@ -33,10 +35,21 @@ struct DelinquencyView: View {
                             Text("You are AT RISK OF DELINQUENCY!")
                                 .foregroundStyle(.red)
                                 .frame(maxWidth: .infinity, alignment: .leading)
+                                .padding(.bottom, 10)
+                            
+                            Text("We're \(riskPredictor.confidence * 100, specifier: "%.2f")% confident that you will become financially delinquent within the next 2 years.")
+                                .italic(true)
+                                .frame(maxWidth: .infinity, alignment: .leading)
                         } else {
                             Text("You're all good!")
                                 .foregroundStyle(.green)
                                 .frame(maxWidth: .infinity, alignment: .leading)
+                                .padding(.bottom, 10)
+                            
+                            Text("We're \(riskPredictor.confidence * 100, specifier: "%.2f")% confident that you won't become financially delinquent within the next 2 years.")
+                                .italic(true)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                
                         }
                         
                         Spacer()
@@ -59,14 +72,14 @@ struct DelinquencyView: View {
                 } else {
                     VStack {
                         Text("Hello, Guest!")
-                            .font(.title)
+                            .font(.largeTitle)
                             .bold()
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .padding(.horizontal, 20)
-                            .padding(.top, 20)
+                            .padding(.top, 40)
                             .padding(.bottom, 10)
                         
-                        Text("You need to create an account, and enter some details about yourself, before we can calculate your risk of delinquency.")
+                        Text("You need to create an account, and enter some details about yourself, before we can calculate your risk of financial delinquency.")
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .padding(.horizontal, 20)
                         
